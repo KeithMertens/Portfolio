@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styleweb.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        a {
+            color: #00ffcc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            z-index: 9999;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #111;
+        }
+
+        header nav a {
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin: 20px 0;
+            color: #00ffcc;
+        }
+
+        p {
+            color: #bbb;
+            font-size: 1rem;
+        }
+
+        /* About Section Integration */
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .title .tag {
+            display: inline-block;
+            background-color: #ff69b4;
+            color: #000;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+        }
+
+        .title .dev {
+            color: #00ffcc;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .highlight {
+            color: #ff69b4;
+        }
+
+        /* Technologies Section */
+        #technologies ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #technologies li {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Animation for Technologies Section */
+        .animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        /* New Section Styles */
+        #new-section {
+            background-color: #222;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+
+        #new-section h2 {
+            color: #ff69b4;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        #new-section p {
+            font-size: 1rem;
+            color: #ddd;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const greetings = ["*Hello", "*Hola", "*Bonjour", "*Hallo", "*Ciao", "*こんにちは", "*안녕하세요", "*你好", "*Привет"];
+            let index = 0;
+            const greetingElement = document.getElementById("greeting");
+
+            const changeGreeting = () => {
+                greetingElement.textContent = greetings[index];
+                index = (index + 1) % greetings.length;
+            };
+
+            // Change greetings every 250ms
+            setInterval(changeGreeting, 250);
+
+            // After loading completes, hide the loading screen
+            setTimeout(() => {
+                const loadingScreen = document.getElementById("loading-screen");
+                loadingScreen.style.display = "none"; // Hide the loading screen
+                document.body.style.overflow = "auto"; // Re-enable scrolling
+                document.getElementById("about").scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 5000);
+
+            // Animation on scroll
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            });
+
+            document.querySelectorAll(".animate").forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <h1 id="greeting">Hello</h1>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#technologies">Technologies</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="profile">
+                <img src="41415976-f3f9-439e-8a4b-178a1c2d3e2a-removebg-preview.png" alt="Avatar" class="avatar">
+                <div class="intro">Hello, I'm Kenjie</div>
+            </div>
+            <div class="title">
+                <span class="tag product">Product</span>
+                <h1>DIGITAL EXPERIENCE DESIGNER & <span class="dev">DEVELOPER</span></h1>
+            </div>
+            <div class="info">
+                <p>// UI/UX Designer</p>
+                <p>Full-Stack Developer</p>
+                <p>// Based in Cavite, Philippines</p>
+            </div>
+            <div class="tagline">
+                I create a digital experience that borders on <span class="highlight">efficiency</span>,
+                <span class="highlight">aesthetics</span>, and <span class="highlight">functionality</span>.
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Technologies I Know</title>
+        <style>
+            /* General Styles */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Arial', sans-serif;
+                background-color: #111;
+                color: #fff;
+                text-align: center;
+            }
+    
+            h2 {
+                color: #00ffcc;
+                margin-bottom: 20px;
+            }
+    
+            /* Tabs Styling */
+            .tabs {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+    
+            .tab-link {
+                background-color: transparent;
+                border: none;
+                color: #bbb;
+                font-size: 1rem;
+                font-weight: bold;
+                margin: 0 10px;
+                cursor: pointer;
+                border-bottom: 2px solid transparent;
+                transition: color 0.3s, border-color 0.3s;
+            }
+    
+            .tab-link:hover, .tab-link.active {
+                color: #00ffcc;
+                border-color: #00ffcc;
+            }
+    
+            /* Skills Container */
+            .skills {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+    
+            .skill {
+                display: inline-block;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: bold;
+                color: #fff;
+                text-align: center;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                cursor: default;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+    
+            .skill:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 10px rgba(0, 255, 204, 0.5);
+            }
+    
+            /* Tab Content */
+            .tab-content {
+                display: none;
+            }
+    
+            .tab-content.active {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Technologies Section -->
+        <section id="technologies">
+            <h2>My Skills</h2>
+    
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-link active" onclick="openTab(event, 'frontend')">Frontend</button>
+                <button class="tab-link" onclick="openTab(event, 'backend')">Backend</button>
+       
+            </div>
+    
+            <!-- Frontend Skills -->
+            <div id="frontend" class="tab-content active">
+                <div class="skills">
+                    <span class="skill" style="background-color: #f7df1e; color: #000;">🟨 JavaScript</span>
+                    <span class="skill" style="background-color: #264de4;">CSS</span>
+                    <span class="skill" style="background-color: #e34c26;">HTML</span>
+                   
+                </div>
+            </div>
+    
+            <!-- Backend Skills -->
+            <div id="backend" class="tab-content">
+                <div class="skills">
+                    <span class="skill" style="background-color: #f29111;">PHP</span>
+                    <span class="skill" style="background-color: #00758f;">MySQL</span>
+                </div>
+            </div>
+    
+        <!-- JavaScript for Tabs -->
+        <script>
+            function openTab(event, tabName) {
+                // Hide all tab content
+                document.querySelectorAll(".tab-content").forEach(tab => {
+                    tab.classList.remove("active");
+                });
+    
+                // Remove active class from all tabs
+                document.querySelectorAll(".tab-link").forEach(tab => {
+                    tab.classList.remove("active");
+                });
+    
+                // Show the selected tab and set active
+                document.getElementById(tabName).classList.add("active");
+                event.currentTarget.classList.add("active");
+            }
+        </script>
+   <!-- Projects Section -->
+<section id="projects" class="animate">
+    <h2>Projects</h2>
+    <div class="project-container">
+        <!-- Project 1 -->
+        <div class="project">
+            <div class="project-image">
+                <img src="catttt.png" alt="Project 1 Image">
+            </div>
+            <div class="project-info">
+                <h3>CATHUB</h3>
+                <p>Dating Site For Cats</p>
+                <a class="button" href="https://github.com/KeithMertens/Website">View Project</a>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project">
+            <div class="project-image">
+                <img src="Screenshot 2024-12-17 165213.png" alt="Project 2 Image">
+            </div>
+            <div class="project-info">
+                <h3>Student Management</h3>
+                <p>Some description about project 2.</p>
+                <a class="button" href="https://github.com/KeithMertens/STUDFORSHARING">View Project</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+   
+    <!-- Blog Section -->
+    <section id="blog" class="animate">
+        <h2>Blog</h2>
+        <p>Coming soon! Stay tuned for my latest posts.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="animate">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:kenjiewushi@gmail.com">yourname@example.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/kenjie-nebril">LinkedIn Profile</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 My Portfolio. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+</body>
+</html>
